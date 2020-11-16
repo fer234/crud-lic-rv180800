@@ -1,0 +1,80 @@
+<style>
+.btn-space {
+margin-right: 20px;
+}
+</style>
+
+<!-- Inicio del navbar -->
+<nav class="navbar navbar-dark bg-dark">
+<a class="navbar-brand" href="/">
+Nº de Registros: 
+<span class="badge badge-success">{{personaArray.length}}</span>
+</a>
+</nav>
+<!-- Fin del navbar -->
+
+<!-- Aqui inicia el contenido de la pagina -->
+<!-- Aqui se ven los registros, hacer clic para interactuar -->
+<div class="container">
+<div class="row">
+<div class="col-md-8 mt-4">
+<ul class="list-group">
+<li *ngFor="let persona of personaArray" class="list-group-item list-group-item-
+action"
+(click)="openForEdit(persona)"
+[class.active]="persona == selectedPersona">
+<span class="badge badge-primary">{{persona.id}}</span>
+- {{persona.name}}
+- {{persona.lastname}}
+- {{persona.age}}
+</li>
+</ul>
+</div>
+<!-- Aqui termina la seccion para ver registros -->
+<!-- Este es formulario para hacer el CRUD -->
+<div class="col-md-4">
+<div class="card">
+<div class="card-body">
+<div class="card-title">
+<h3>{{selectedPersona.id == 0 ? "Agregar Nuevo Registro" : "Actualizar Registro"}}</h3>
+</div>
+<div class="form-group">
+<input type="text" [(ngModel)]="selectedPersona.name" placeholder="Ingresa tu Nombre"
+class="form-control" required>
+</div>
+<div class="form-group">
+<input type="text" [(ngModel)]="selectedPersona.lastname" placeholder="Ingresa tu Apellido"
+class="form-control" required>
+</div>
+<div class="form-group">
+<input type="number" [(ngModel)]="selectedPersona.age" placeholder="Ingresa tu Edad"
+class="form-control" required>
+</div>
+<button (click)="addOrEdit()" class="btn btn-primary btn-space">
+Guardar
+</button>
+<button *ngIf="selectedPersona.id !== 0" class="btn btn-danger" (click)="delete()">
+Eliminar
+</button>
+</div>
+</div>
+<!-- Aqui termina el formulario -->
+</div>
+</div>
+<!-- Aqui termina el contenido principal -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- Pie de pagina -->
+<footer class="page-footer font-small black">
+<!-- Copyright -->
+<div class="footer-copyright text-center py-3">Fernando Reyes © 2020 Copyright: Derechos reservados
+</div>
+<!-- Copyright -->
+</footer>
+<!-- Fin -->
